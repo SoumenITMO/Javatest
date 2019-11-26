@@ -14,3 +14,6 @@
 - create database db1
 - keep the port 86 unused 
 
+## Url :
+- http://localhost:86/emp
+

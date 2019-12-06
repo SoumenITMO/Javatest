@@ -5,8 +5,7 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "employee")
@@ -30,7 +29,7 @@ public class Employee implements Serializable {
     private float employeeSalary;
 
     @Column(name = "created")
-    private LocalTime employeeCreated;
+    private LocalDateTime employeeCreated;
 
     // Setter and Getter
     public void setEmployeeName(String employeeName) {
@@ -49,7 +48,8 @@ public class Employee implements Serializable {
         this.employeeSalary = employeeSalary;
     }
 
-    public void setCreatedDate(LocalTime createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) {
+
         this.employeeCreated = createdDate;
     }
 
@@ -57,16 +57,20 @@ public class Employee implements Serializable {
         return this.employeeName;
     }
 
-    public LocalDate getEmployeeDob() { return this.empployeeDob; }
+    public String getEmployeeDob() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return this.empployeeDob.format(formatter);
+    }
 
     public String getEmployeeSalary() {
         DecimalFormat decimalFormat = new DecimalFormat();
-        decimalFormat.setMaximumFractionDigits(5);
+        decimalFormat.setMaximumFractionDigits(2);
         return String.valueOf(decimalFormat.format(this.employeeSalary));
     }
 
-    public LocalTime getEmployeeCreated() {
-        return this.employeeCreated;
+    public String getEmployeeCreated() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        return this.employeeCreated.format(formatter);
     }
 
     public String getEmployeeCountryCode() { return this.employeeCountry; }

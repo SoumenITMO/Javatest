@@ -21,14 +21,14 @@ public class GetCountryTimeZone {
         this.countries = countries;
     }
 
-    public LocalTime getTimeZoneByCountryCode(String countryCode) {
+    public LocalDateTime getTimeZoneByCountryCode(String countryCode) {
         Date date = new Date();
         String getCountryTimeZone = countries.getAllByCountryCode(countryCode).getCountryZone();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         df.setTimeZone(TimeZone.getTimeZone(getCountryTimeZone));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalTime dateTime = LocalTime.from(LocalDateTime.parse(df.format(date), formatter));
+        LocalDateTime dateTime = LocalDateTime.from(LocalDateTime.parse(df.format(date), formatter));
 
         return dateTime;
     }

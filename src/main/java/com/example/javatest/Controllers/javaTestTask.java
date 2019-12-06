@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
@@ -28,6 +29,7 @@ public class javaTestTask {
     }
 
     @GetMapping("/emp")
+    @ResponseBody
     public ModelAndView getEmployees() {
         ModelAndView mv = new ModelAndView("employees");
         mv.addObject("employeeData", employeeService.getEmployees());
